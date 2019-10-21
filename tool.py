@@ -85,10 +85,10 @@ def compress_photo():
         file_list_des = list_img_file(des_dir)
         # print file_list
     '''如果已经压缩了，就不再压缩'''
-    '''for i in range(len(file_list_des)):
+    for i in range(len(file_list_des)):
         if file_list_des[i] in file_list_src:
             file_list_src.remove(file_list_des[i])
-    compress('4', des_dir, src_dir, file_list_src)'''
+    '''compress('4', des_dir, src_dir, file_list_src)'''
 
 
 def handle_photo():
