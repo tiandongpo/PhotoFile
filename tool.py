@@ -27,13 +27,15 @@ def directory_exists(directory):
 def list_img_file(directory):
     """列出目录下所有文件，并筛选出图片文件列表返回"""
     old_list = os.listdir(directory)
-    # print old_list
+    #print("1")
+    #print(old_list)
     new_list = []
     for filename in old_list:
         name, fileformat = filename.split(".")
         if fileformat.lower() == "jpg" or fileformat.lower() == "png" or fileformat.lower() == "gif":
             new_list.append(filename)
-    # print new_list
+    #print("2")
+    #print(new_list)
     return new_list
 
 
@@ -79,11 +81,14 @@ def compress_photo():
             make_directory(src_dir)
         # business logic        
         file_list_src = list_img_file(src_dir)
+        print("1")
+        print(file_list_src)
     if directory_exists(des_dir):
         if not directory_exists(des_dir):
             make_directory(des_dir)
         file_list_des = list_img_file(des_dir)
         # print file_list
+        print("2")
     '''如果已经压缩了，就不再压缩'''
     for i in range(len(file_list_des)):
         if file_list_des[i] in file_list_src:
@@ -135,7 +140,7 @@ def handle_photo():
         json.dump(final_dict, fp)
 def cut_photo():
     """裁剪算法
-    
+
     ----------
     调用Graphics类中的裁剪算法，将src_dir目录下的文件进行裁剪（裁剪成正方形）
     """
@@ -145,7 +150,7 @@ def cut_photo():
             make_directory(src_dir)
         # business logic
         file_list = list_img_file(src_dir)
-        # print file_list
+        print(file_list)
         if file_list:
             print_help()
             for infile in file_list:
@@ -153,6 +158,7 @@ def cut_photo():
                 Graphics(infile=src_dir+infile, outfile=src_dir + infile).cut_by_ratio()            
         else:
             pass
+
     else:
         print("source directory not exist!")     
 
@@ -172,7 +178,7 @@ def git_operation():
 cut_photo()        # 裁剪图片，裁剪成正方形，去中间部分
 compress_photo()   # 压缩图片，并保存到mini_photos文件夹下
 git_operation()    # 提交到github仓库
-handle_photo()     # 将文件处理成json格式，存到博客仓库中   
+#handle_photo()     # 将文件处理成json格式，存到博客仓库中   
     
     
     
